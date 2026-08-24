@@ -759,7 +759,7 @@ class AdminHandlers:
             f"Amount: ₹{first['amount']}\n"
             f"User: {first['first_name'] or first['username'] or first['user_id']}\n"
             f"Ref: `{first['txn_id']}`\n"
-            f"UTR: `{self.db.get_setting(f'utr_{first['id']}') or 'Not submitted'}`",
+            f"UTR: {self.db.get_setting('utr_' + str(first['id'])) or 'Not submitted'}"
             reply_markup=keyboards.admin_payment_action(first["id"]),
             parse_mode="Markdown",
         )
