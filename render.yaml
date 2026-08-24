@@ -1,0 +1,37 @@
+# Render Blueprint — Telegram Reseller Bot
+# Service type: Background Worker (not a web service)
+# The bot uses long polling, so it does not need an incoming port.
+# Render Background Workers run continuously and are billed per usage.
+
+services:
+  - type: worker
+    name: telegram-reseller-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    # Start command — must match README
+    startCommand: python bot.py
+    # Python version (Render supports 3.11+)
+    pythonVersion: "3.11"
+    # Auto-deploy from main branch
+    autoDeploy: true
+    # Environment variables — set these in Render Dashboard
+    # (Do NOT put secrets here — use Render Environment Variables)
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: API_URL
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: MASTER_KEY
+        sync: false
+      - key: PAYMENT_API_KEY
+        sync: false
+      - key: PAYMENT_SECRET
+        sync: false
+      - key: UPI_ID
+        sync: false
+      - key: SUPPORT_USERNAME
+        sync: false
